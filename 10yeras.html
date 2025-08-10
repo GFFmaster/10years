@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Audio Player</title>
+  <style>
+    html,body{height:100%;margin:0;background:#000;display:flex;align-items:center;justify-content:center}
+    button.play{
+      width:140px;
+      height:140px;
+      border-radius:50%;
+      border:none;
+      background:#fff;
+      color:#000;
+      font-size:48px;
+      font-weight:bold;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+  </style>
+</head>
+<body>
+  <audio id="audio" preload="metadata">
+    <source src="audio(1).mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает элемент audio.
+  </audio>
+
+  <button id="play" class="play" aria-label="Play">▶</button>
+
+  <script>
+    const audio = document.getElementById('audio');
+    const playBtn = document.getElementById('play');
+
+    playBtn.addEventListener('click', ()=>{
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener('play', ()=>{
+      playBtn.textContent = '⏸';
+    });
+
+    audio.addEventListener('pause', ()=>{
+      playBtn.textContent = '▶';
+    });
+  </script>
+</body>
+</html>
